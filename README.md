@@ -1,10 +1,10 @@
 # Requisitos previos
 Hay algunas cosas que debe hacer antes de comenzar de verdad:
 
-Instalar Terraform
-Instalar kubectl
-Instale el SDK de Google Cloud
-Clonar el repositorio complementario para esta publicación de blog
+    Instale Terraform
+    Instale kubectl
+    Instale el SDK de Google Cloud
+    Clonar este repositorio
 
 # Crear cuenta de servicio
 Para Terraform, queremos credenciales del tipo de cuenta de servicio. Vamos a la consola de administración de IAM para hacer eso. Haga clic en Crear cuenta de servicio y complete el formulario con los siguientes datos:
