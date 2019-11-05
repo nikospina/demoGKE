@@ -1,5 +1,3 @@
-# demoGKE
-
 # Requisitos previos
 Hay algunas cosas que debe hacer antes de comenzar de verdad:
 
@@ -8,10 +6,12 @@ Instalar kubectl
 Instale el SDK de Google Cloud
 Clonar el repositorio complementario para esta publicación de blog
 
-# Para Terraform, queremos credenciales del tipo de cuenta de servicio. Vamos a la consola de administración de IAM para hacer eso. Haga clic en Crear cuenta de servicio y complete el formulario con los siguientes datos:
-  Service account name: terraform
-  Service account ID: terraform
-  Service account description: Desplegar infraestructura utilizando Terraform.
+# Crear cuenta de servicio
+Para Terraform, queremos credenciales del tipo de cuenta de servicio. Vamos a la consola de administración de IAM para hacer eso. Haga clic en Crear cuenta de servicio y complete el formulario con los siguientes datos:
+
+    Service account name: terraform
+    Service account ID: terraform
+    Service account description: Desplegar infraestructura utilizando Terraform.
   
 El siguiente paso es asignar permisos.
 
@@ -28,10 +28,10 @@ Guárdelo en el lugar donde clonó este repositorio. Llamelo account.json.
 # Crear un depósito en la seccion de storage y habilitar el control de versiones
 Seguiremos la documentación oficial en Google Storage sobre cómo configurar un bucket. Desafortunadamente, la consola de Google Storage actualmente no puede permitirnos habilitar el control de versiones, que es algo que Terraform recomienda (requiere). Para eso, necesitamos descargar e instalar Google Cloud SDK , lo que nos da acceso a gsutil. Una vez que haya seguido las instrucciones para el SDK de Google Cloud, puede escribir los siguientes comandos:
 
-  $ export BUCKET_ID=...your ID goes here...
-  $ gsutil versioning set on gs://${BUCKET_ID}
+    $ export BUCKET_ID=...your ID goes here...
+    $ gsutil versioning set on gs://${BUCKET_ID}
         //Enabling versioning for gs://gke-from-scratch-terraform-state/...
-  $ gsutil versioning get gs://${BUCKET_ID}
+    $ gsutil versioning get gs://${BUCKET_ID}
         //gs://gke-from-scratch-terraform-state: Enabled
   
 # Configuración de Google Cloud Storage como estado remoto de Terraform
@@ -41,13 +41,13 @@ La mayoría de los valores en los archivos de Terraform se han escrito de tal ma
 
 Para configurar Terraform, ejecutamos:
  
-  $ export ENVIRONMENT=production
-  $ terraform workspace new ${ENVIRONMENT}  
+    $ export ENVIRONMENT=production
+    $ terraform workspace new ${ENVIRONMENT}  
       //Created and switched to workspace "production"!  
       //You're now on a new, empty workspace. Workspaces isolate their state,
       //so if you run "terraform plan" Terraform will not see any existing state
       //for this configuration.
-  $ terraform init -var-file=${ENVIRONMENT}.tfvars  
+    $ terraform init -var-file=${ENVIRONMENT}.tfvars  
   
 Terraform nos da muchos resultados, pero entre otros, dirá que el proveedor "google" se ha configurado y que el proveedor "gcs" (backend de estado remoto) se ha configurado. ¡Éxito!
 
